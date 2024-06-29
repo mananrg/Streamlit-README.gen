@@ -71,7 +71,7 @@ def hello_world():
 ```
 
 This code would result in a generated README content similar to:
-```markdown
+
 # Hello World Example
 
 ## Description
@@ -87,7 +87,6 @@ python hello_world.py
 The script will output:
 ```
 Hello, World!
-```
 ```
 
 ## License
