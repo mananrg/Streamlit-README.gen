@@ -1,119 +1,100 @@
-# Readme Generator powered by OpenAI
+# README.gen
+
+![favicon](favicon.ico)
+
+## Table of Contents
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [License](#license)
 
 ## Description
-The Readme Generator is a Streamlit-based web application designed to help you create professional README.md files effortlessly. It leverages OpenAI's GPT model to analyze the provided code snippets and generate well-structured and detailed README.md files in Markdown format. The application offers a user-friendly interface where users can upload their code files and obtain a fully formatted README.
 
-## Installation Instructions
+**README.gen** is a powerful Streamlit application designed to streamline the process of creating professional README.md files. By leveraging the power of AI, README.gen analyzes your code snippets and automatically generates comprehensive and well-structured documentation, minimizing the effort and time required for project documentation.
 
-To use the Readme Generator, follow these steps:
+## Installation
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/yourusername/readme-generator.git
-   cd readme-generator
-   ```
-2. Create a virtual environment and activate it:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-   ```
+Follow these steps to install the necessary dependencies and set up the application:
 
-3. Install the dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/mananrg/Streamlit-README.gen
+    cd readmegen
+    ```
 
-4. Create a `secrets.json` file in the root directory of the project and add your OpenAI API key in the following format:
-   ```json
-   {
-       "api_key": "YOUR_OPENAI_API_KEY"
-   }
-   ```
+2. **Create a virtual environment** (optional but recommended):
+    ```bash
+    python -m venv streamlit
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
+
+3. **Install the required dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. **Add your OpenAI API key to Streamlit secrets**:
+    Create a file named `secrets.toml` in the `.streamlit` directory of the project and add your OpenAI API key:
+    ```toml
+    OPENAI_API_KEY = "your_openai_api_key_here"
+    ```
 
 ## Usage
 
-To start the application, run:
-```bash
-streamlit run app.py
-```
+1. **Run the application**:
+    ```bash
+    streamlit run app.py
+    ```
 
-### Steps to Generate README:
+2. **Upload your code files**:
+    - Click on the "Upload your code files" button to upload one or more code files that need to be documented.
 
-1. Open your web browser and navigate to `http://localhost:8501`.
-2. Upload the code files for which you want to generate a README.md file by clicking on "Browse files" or drag and drop the files.
-3. Click the "Generate README" button.
-4. If no files are uploaded, a warning message will appear prompting you to upload your code files.
-5. Once the README.md content is generated, it will be displayed in two columns:
-   - **Your Readme:** Shows the raw Markdown code of the generated README.
-   - **Preview:** Displays the rendered Markdown so you can see how it looks.
+3. **Generate the README**:
+    - Click on the "Generate README" button. If you haven't uploaded any files, you will be prompted to do so.
+    - Upon generating, the application will display the Markdown content of the README on the left column and a preview on the right column.
+
+4. **Download the generated README**:
+    - Click on the "Download README.md" button to download the generated README file.
 
 ## Examples
 
-### Example Input
+Here's an example walkthrough of the generated README.md file by README.gen:
 
-Uploading a single Python file with the following content:
+### Example Code Snippet
+
+Consider the following code snippet:
 ```python
-import numpy as np
-
-def add(a, b):
-    return np.add(a, b)
-
-def subtract(a, b):
-    return np.subtract(a, b)
+# A simple Python example
+def hello_world():
+    print("Hello, World!")
 ```
 
-### Example Output
-
+This code would result in a generated README content similar to:
 ```markdown
-# Project Title
+# Hello World Example
 
 ## Description
-This project deals with basic arithmetic operations using numpy. It includes functionalities to add and subtract two numbers.
-
-## Installation Instructions
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/yourusername/project.git
-   cd project
-   ```
-2. Create a virtual environment and activate it:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-   ```
-3. Install the dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+This project contains a simple Python script to print "Hello, World!" to the console.
 
 ## Usage
-To use the arithmetic operations, you can import the functions from the script and call them as follows:
-```python
-from your_module import add, subtract
+Run the following command to execute the script:
+```bash
+python hello_world.py
+```
 
-result_add = add(1, 2)
-result_subtract = subtract(2, 1)
-print(f"Addition Result: {result_add}")
-print(f"Subtraction Result: {result_subtract}")
+## Examples
+The script will output:
+```
+Hello, World!
+```
 ```
 
 ## License
-This project is licensed under the MIT License.
-```
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for more details.
-
+This project is licensed under the terms of the MIT license. 
 ---
 
-Feel free to contribute to the project by submitting pull requests or reporting issues.
-
-## Acknowledgments
-This project makes use of [Streamlit](https://streamlit.io) for the web interface and [OpenAI](https://openai.com) for the AI-based README generation.
-
-## Contact
-For any inquiries or support, please contact [yourname@example.com](mailto:yourname@example.com).
-
----
-
-**Note:** This application assumes that you have valid access to OpenAI's GPT model API. Ensure your API key is stored securely and do not share it publicly.
+<div class="footer">
+    <p>Developed with ❤ by [Manan R. Gandhi](https://fluttersolutions.in)</p>
+</div>

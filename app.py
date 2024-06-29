@@ -71,8 +71,6 @@ st.markdown("""
 uploaded_files = st.file_uploader("Upload your code files:", accept_multiple_files=True)
 
 # Generate Readme Button
-st.markdown("### Generate README")
-
 if st.button("Generate README"):
     if not uploaded_files:
         st.warning("Please upload your code files before generating the README.")
