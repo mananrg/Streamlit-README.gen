@@ -77,44 +77,59 @@ if st.button("Generate README"):
     else:        
         content = ""
         for uploaded_file in uploaded_files:
-            content += uploaded_file.read().decode() + "\n\n"
-        prompt = (
-            "You are an AI trained to generate professional README.md files. "
-            "Given the following code snippet(s), analyze their structure, purpose, and functionality. "
-            "Then, create a detailed and well-formatted README.md file in Markdown format that includes sections such as "
-            "`Title`, `Description`, `Installation Instructions`, `Usage`, `Examples`, and `License`. \n\n"
-            "Here is the code:\n\n"
-            f"{content}\n"
-            "```\n"
-            "Based on the analysis, generate the README.md file."
-        )
-        response = rg.ask(prompt)
+            try:
+                content += uploaded_file.read().decode('utf-8') + "\n\n"
+                print("Inside UTF-8 try")
+            except UnicodeDecodeError:
+                print("Inside Except")
+                # try:
+                #     content += uploaded_file.read().decode('latin-1') + "\n\n"
+                #     print("INside UnicodeDecode Try")
+                # except UnicodeDecodeError:
+                print("Inside UnicodeDecode Error")
+                st.error(f"Could not decode file {uploaded_file.name}. Please ensure the file is properly encoded.")
+                print("Inside UnicodeDecode Error")
+            
+        if content:
+            prompt = (
+                "You are an AI trained to generate professional README.md files. "
+                "Given the following code snippet(s), analyze their structure, purpose, and functionality. "
+                "Then, create a detailed and well-formatted README.md file in Markdown format that includes sections such as "
+                "`Title`, `Description`, `Installation Instructions`, `Usage`, `Examples`, and `License`. \n\n"
+                "Here is the code:\n\n"
+                f"{content}\n"
+                "```\n"
+                "Based on the analysis, generate the README.md file."
+            )
+            response = rg.ask(prompt)
+            if response == "False":
+                st.error("Server currently down")
+            # Column Section
+            else:
+                st.markdown("""<h2>Your README.md is generated</h2>""", unsafe_allow_html=True)
+                st.markdown("""----""")
+                readme_col, preview_col = st.columns(2)
+                st.column_config.Column(width="maximum")
 
-        # Column Section
-        st.markdown("""<h2>Your README.md is generated</h2>""", unsafe_allow_html=True)
-        st.markdown("""----""")
-        readme_col, preview_col = st.columns(2)
-        st.column_config.Column(width="maximum")
-
-        # README Column
-        with readme_col:
-            st.subheader("Markdown")
-            st.code(response)
-        
-        # Preview Column
-        with preview_col:
-            st.subheader("Preview")
-            st.markdown(response)
-        
-        # Download Button
-        st.markdown("---")
-        download_button = st.download_button(
-            label="Download README.md",
-            data=response.encode(),
-            file_name="README.md",
-            mime="text/markdown",
-            key="download_button"
-        )
+                # README Column
+                with readme_col:
+                    st.subheader("Markdown")
+                    st.code(response)
+                
+                # Preview Column
+                with preview_col:
+                    st.subheader("Preview")
+                    st.markdown(response)
+                
+                # Download Button
+                st.markdown("---")
+                download_button = st.download_button(
+                    label="Download README.md",
+                    data=response.encode(),
+                    file_name="README.md",
+                    mime="text/markdown",
+                    key="download_button"
+                )
 
 # Footer 
 footer = """
